@@ -29,3 +29,7 @@ Test for Rindus in Symfony 5 / phpUnit
 References:
 
 Advance configuration for apache web server: https://symfony.com/doc/current/setup/web_server_configuration.html
+
+# Where is located api endpoint
+
+http://servername/rindustest/public/api/v1/check

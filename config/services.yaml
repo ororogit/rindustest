@@ -4,12 +4,24 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
 parameters:
+    endpoint: 'http://api.openweathermap.org/data/2.5/weather?q='
+    api_key: '8ca1bf554fe26dff41d635d4e2f866ed'
 
 services:
     # default configuration for services in *this* file
     _defaults:
         autowire: true      # Automatically injects dependencies in your services.
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+
+    Symfony\Component\HttpClient\HttpClient: '@http.client'
+
+    App\Services\CheckWeatherService:
+        autowire: true
+        public: true
+        arguments: ['@http.client']
+        bind:
+            $api_key: '%api_key%'
+            $endpoint: '%endpoint%'
 
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
